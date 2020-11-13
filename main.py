@@ -51,7 +51,6 @@ def handle_gif(counter, path, out_path):
 def handle_vid(counter, path, out_path):
     # combine video and audio
     for i in range(1, counter):
-        print(i)
         if os.stat(f"{path}raw_audio{i:03}.mp3").st_size > 255:  # check if there is audio
             combine = f'ffmpeg -i {path}raw_video{i:03}.mp4 -i {path}raw_audio{i:03}.mp3 -c:v copy -c:a aac {path}combined{i:03}.mp4'  # combines mp4 and mp3
             # resize the video and make it ready for concat
