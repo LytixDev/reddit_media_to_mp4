@@ -57,9 +57,8 @@ def handle_vid(counter, path, out_path):
             resize = f'ffmpeg -i {path}combined{i:03}.mp4 -vf "scale=1920:1080:force_original_aspect_ratio=decrease,pad=1920:1080:-1:-1:color=black" {path}final{i:03}.mp4'
             os.system(combine)
             os.system(resize)
-        else:  # if no audio on the mp3 we rename the mp4
-            os.rename(f"{path}raw_video{i:03}.mp4", f"{path}combined{i:03}.mp4")
-            resize = f'ffmpeg -i {path}combined{i:03}.mp4 -vf "scale=1920:1080:force_original_aspect_ratio=decrease,pad=1920:1080:-1:-1:color=black" {path}final{i:03}.mp4'
+        else:  # if no audio on the mp3 we send the mp4 straight for rezising
+            resize = f'ffmpeg -i {path}raw_video{i:03}.mp4 -vf "scale=1920:1080:force_original_aspect_ratio=decrease,pad=1920:1080:-1:-1:color=black" {path}final{i:03}.mp4'
             os.system(resize)
 
     # store the files for concatenation on .txt file
